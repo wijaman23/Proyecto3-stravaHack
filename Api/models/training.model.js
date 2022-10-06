@@ -74,8 +74,8 @@ trainingSchema.virtual("comments", {
   foreignField: "training",
 });
 
-trainingSchema.virtual("likes", {
-  ref: "Like",
+trainingSchema.virtual("kudo", {
+  ref: "Kudo",
   localField: "_id",
   foreignField: "training",
   count: true,

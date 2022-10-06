@@ -5,6 +5,7 @@ const user = require("../controllers/user.controller");
 const secure = require("../middlewares/secure.mid");
 const trainingMid = require("../middlewares/training.mid");
 const comments = require("../controllers/comment.controller")
+const kudos = require("../controllers/kudos.controller")
 
 router.post("/register", user.register);
 router.get("/profile", secure.isAuthenticated, user.profile);
@@ -24,7 +25,7 @@ router.delete(
   training.delete
 );
 
-router.post("/training/:id/like", secure.isAuthenticated, training.like);
+router.post("/training/:id/kudos", secure.isAuthenticated, kudos.kudos);
 
 router.post("/training/:id/comments", secure.isAuthenticated, comments.create);
 router.delete(

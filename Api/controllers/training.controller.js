@@ -13,6 +13,11 @@ module.exports.create = (req, res, next) => {
 module.exports.list = (req, res, next) => {
   Training.find()
     .populate("owner", "name email")
+    .populate({
+      path:"comments",
+      populate: {path: "user"}
+    })
+    .populate("kudo")
     .then((training) => res.json(training))
     .catch((error) => next(error));
 };
@@ -23,25 +28,6 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.like = (req, res, next) => {
-  const detail = {
-    user: req.user.id,
-    training: req.params.id,
-  };
-
-  Like.findOne(detail)
-    .then((like) => {
-      if (like) {
-        return Like.deleteOne(detail);
-      } else {
-        return Like.create(detail);
-      }
-    })
-    .then(() => Like.count(detail))
-    .then((likes) => res.json({ likes }))
-    .catch(next);
-};
-
 module.exports.detail = (req, res, next) => {
   Training.findById(req.params.id)
     .populate("owner", "name email")
@@ -49,6 +35,7 @@ module.exports.detail = (req, res, next) => {
       path:"comments",
       populate: {path: "user"}
     })
+    .populate("kudo")
     .then((training) => {
       if (training) {
         res.json(training);

@@ -27,5 +27,5 @@ const schema = new Schema(
   }
 );
 
-const Like = mongoose.model("Like", schema);
-module.exports = Like;
+const Kudo = mongoose.model("Kudo", schema);
+module.exports = Kudo;
