@@ -12,8 +12,8 @@ module.exports.register = (req, res, next) => {
       if (user) {
         next(
           createError(400, {
-            message: "User validation failed",
-            errors: { email: { message: "User already registered" } },
+            message: "Validacion usuario fallida",
+            errors: { email: { message: "Usuario ya registrado" } },
           })
         );
       } else {

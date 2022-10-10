@@ -12,13 +12,13 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   Training.find()
-    .populate("owner", "name email")
+    .populate("owner")
     .populate({
       path:"comments",
       populate: {path: "user"}
     })
     .populate("kudo")
-    .then((training) => res.json(training))
+    .then((training) => res.status(200).json(training))
     .catch((error) => next(error));
 };
 
@@ -38,10 +38,34 @@ module.exports.detail = (req, res, next) => {
     .populate("kudo")
     .then((training) => {
       if (training) {
-        res.json(training);
+        res.status(200).json(training);
       } else {
         next(createError(404, "Entrenamiento no encontrado"));
       }
     })
     .catch(next);
+};
+
+module.exports.userTraining = (req, res, next) => {
+  const user = req.params.id
+
+  Training.find({owner: user})
+    .populate("owner", "name email")
+    .populate({
+      path:"comments",
+      populate: {path: "user"}
+    })
+    .populate("kudo")
+    .then((training) => {
+      if(training) {
+        res.status(200).json(training)
+      }
+      else if (training) {
+        next(createError(403, "Peticion rechazada"));
+      } else {
+        next(createError(404, "Usuario no encontrado"));
+      }
+
+    })
+    .catch((error) => next(error));
 };
