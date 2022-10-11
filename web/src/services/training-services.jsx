@@ -40,7 +40,6 @@ export function detailUsers(id) {
 }
 
 export function userTraining(id) {
-  console.log(id)
   return http.get(`/user/${id}/training`)
 }
 

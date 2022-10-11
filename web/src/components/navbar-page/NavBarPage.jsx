@@ -27,7 +27,7 @@ function NavBarPage() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" fixed="top">
+      <Navbar expand="lg" fixed="top">
         <Container fluid>
           <NavLink to="/home">
             <Navbar.Brand style={{ marginLeft: 100, padding: 10 }}>

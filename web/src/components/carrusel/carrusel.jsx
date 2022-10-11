@@ -1,49 +1,69 @@
 import Carousel from "react-bootstrap/Carousel";
 
+
 function Carrusel() {
   return (
     <Carousel>
-      <Carousel.Item>
-        <div className="d-flex justify-content-center">
-          <img
-            className="d-block "
-            src="https://static.runnea.com/images/201609/nadar-te-hara-feliz-838x400x80xX.jpeg?1"
-            style={{ height: 500 }}
-            alt="First slide"
-          />
-        </div>
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <div className="d-flex justify-content-center">
-          <img
-            className="d-block "
-            src="https://corriendovoy.com/wp-content/uploads/2022/06/PORTADA-YOUTUBE-13-5-1024x576.jpg"
-            style={{ height: 500 }}
-            alt="Second slide"
-          />
-        </div>
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <div className="d-flex justify-content-center">
-          <img
-            className="d-block "
-            src="https://d2p6e6u75xmxt8.cloudfront.net/6/2019/12/cyclists-group-profimedia-0374728116-CVR-1024x450.jpg"
-            style={{ height: 500 }}
-            alt="Third slide"
-          />
-        </div>
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
+      <Carousel.Item interval={4000} className="d-flex align-items-center">
+        <img
+          className="d-block w-100"
+          src="https://i.ibb.co/BwVvhL3/bici-1.jpg"
+          alt="First slide"
+          style={{ height: "700px" }}
+        />
+
+        <Carousel.Caption
+          className="rounded mb-5"
+          style={{ backgroundColor: "rgba(108, 122, 137,0.4)" }}
+        >
+          <h3 style={{ opacity: "1.0" }}>SÉ EL CAMBIO.</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Empieza un plan de entrenamiento, participa en retos y ve ganando
+            fuerza. Corre, sal a pedalear, camina, entrena, baila... ¡toda
+            actividad cuenta! No importa lo lejos que estés de alcanzar tus
+            objetivos: descubre lo mejor de ti con la App StravaHack.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={4000}>
+        <img
+          className="d-block w-100"
+          src="https://i.ibb.co/jhw3V8v/corredor-1.jpg"
+          alt="Second slide"
+          style={{ height: "700px" }}
+        />
+        <Carousel.Caption
+          className="rounded mb-5"
+          style={{ backgroundColor: "rgba108, 122, 137,0.4)" }}
+        >
+          <h3>EJERCICIO. FUERZA. SALUD.</h3>
+          <p>
+            Selecciona grupos musculares y crea tu propio entrenamiento
+            personalizado. Participa en retos y compite amistosamente para
+            motivarte más. Entrena en cualquier sitio y en cualquier lugar.
+            Obtén los resultados que buscas gracias a planes de entrenamiento
+            que se adaptan a tu nivel, diseñados por especialistas del fitness.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={4000}>
+        <img
+          className="d-block w-100"
+          src="https://i.ibb.co/YBKxFxD/nadador-1.jpg"
+          alt="Third slide"
+          style={{ height: "700px" }}
+        />
+        <Carousel.Caption
+          className="rounded mb-5"
+          style={{ backgroundColor: "rgba(108, 122, 137,0.4)" }}
+        >
+          <h3>REGISTRA TUS ACTIVIDADES. PROGRESA. TRIUNFA.</h3>
+          <p>
+            Registra tus entrenamientos y analiza las estadísticas. Únete a
+            retos para más motivación y desafía tus límites. Comparte tus éxitos
+            con una comunidad global y alcanza tus metas paso a paso. ¿Te
+            animas? Descarga las apps adidas Running y adidas Training y ponte
+            en forma con éxito.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

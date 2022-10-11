@@ -9,14 +9,16 @@ function Home() {
     <div>
     <NavBarPage />
     <div className="d-flex container" style={{ marginTop: 70 }}>
-      <div className="col-2 me-5" >
+      <div className="col-3 me-3" >
         <UserProfile />
         <Estadisticas />
       </div>
       <div className="col-5">
         <TrainingList />
       </div>
-      <div className="col-3"></div>
+      <div className="col-3 ms-5">
+        
+      </div>
     </div>
     </div>
 

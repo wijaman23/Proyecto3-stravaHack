@@ -101,7 +101,7 @@ function TrainingItem({
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="d-flex flex-column mt-4 p-3 border bg-light rounded">
+    <div className="d-flex flex-column mt-4 p-3 border rounded" style={{ backgroundColor: "white" }}>
       <div className="d-flex">
         <img
           className=" rounded-5"

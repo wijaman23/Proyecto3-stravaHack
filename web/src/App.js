@@ -19,7 +19,7 @@ function AuthGuard({ children }) {
 
 function App() {
   return (
-    <div>
+    <div className="bg-light">
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
         <Route

@@ -49,7 +49,7 @@ function UserProfile() {
   }
 
   return (
-    <div className="border mt-4 d-flex flex-column p-3 bg-light rounded">
+    <div className="border mt-4 d-flex flex-column p-3 rounded" style={{ backgroundColor: "white" }}>
       <div className="d-flex justify-content-center">
         <img
           src={user.img}
@@ -57,7 +57,7 @@ function UserProfile() {
           style={{ width: 100, borderRadius: 50 }}
         />
       </div>
-      <div className="mt-3">
+      <div className="mt-3 d-flex justify-content-center">
         <h5 style={{ fontSize: 20, fontWeight: 700 }}>
           {user.name} {user.lastname}
         </h5>

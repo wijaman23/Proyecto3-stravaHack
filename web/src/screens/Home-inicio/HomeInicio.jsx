@@ -8,9 +8,7 @@ function HomeInicio() {
     <>
       <NavBarPageLogin />
       <Carrusel />
-      <div className="bg-warning" style={{height: 80}}>
-        <h3 style={{color: "white"}}> Ya somos</h3>
-      </div>
+      <Footer />
     </>
   );
 }

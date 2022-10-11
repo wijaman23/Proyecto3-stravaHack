@@ -6,13 +6,13 @@ import { NavLink } from "react-router-dom";
 
 function NavBarPageLogin() {
   return (
-    <div>
-      <Navbar bg="light" expand="lg">
+    <div className="container">
+      <Navbar expand="lg">
         <Container fluid>
           <NavLink
             to="/"
           >
-            <div style={{ marginLeft: 100, padding: 10 }}>
+            <div style={{ padding: 10 }}>
               <Navbar.Brand>
                 <img
                   src="https://i.ibb.co/YWM5v4W/strava-hacklogo-ok.png"
@@ -31,7 +31,7 @@ function NavBarPageLogin() {
             >
               <NavLink> </NavLink>
             </Nav>
-            <div className="d-flex" style={{ marginRight: 100 }}>
+            <div className="d-flex">
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
