@@ -1,4 +1,5 @@
 import React from "react";
+import Amigos from "../../components/amigos/Amigos";
 import Estadisticas from "../../components/estadisticas/Estadisticas";
 import NavBarPage from "../../components/navbar-page/NavBarPage";
 import TrainingList from "../../components/training/training-list/TrainingList";
@@ -16,8 +17,8 @@ function Home() {
       <div className="col-5">
         <TrainingList />
       </div>
-      <div className="col-3 ms-5">
-        
+      <div className="col-3 ms-3">
+        <Amigos />
       </div>
     </div>
     </div>

@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as trainingService from "../../../services/training-services";
 import TrainingItem from "../training-item/TrainingItem";
 

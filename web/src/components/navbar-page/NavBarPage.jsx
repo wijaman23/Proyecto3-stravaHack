@@ -1,6 +1,4 @@
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -10,8 +8,9 @@ import { logout } from "../../services/training-services";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
+import { TbCirclePlus } from "react-icons/tb";
 
-function NavBarPage() {
+function NavBarPage({ icon }) {
   const navigation = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -63,23 +62,13 @@ function NavBarPage() {
                 Amigos
               </NavLink>
             </Nav>
-            <Form className="d-flex mx-3">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-danger">Search</Button>
-            </Form>
-            <div style={{ marginRight: 100 }}>
+            <div>
               <NavDropdown
                 title=<img
                   src={user.img}
                   alt="imagen"
                   style={{ width: 50, borderRadius: 50 }}
                 />
-                id="navbarScrollingDropdown"
               >
                 <NavDropdown.Item>
                   <Link to="/aciton" className="nav-link">
@@ -101,11 +90,44 @@ function NavBarPage() {
                 </div>
               </NavDropdown>
             </div>
+            <div style={{ marginRight: 100 }}>
+              {icon && (
+                <Link to="/createtraining">
+                  <button
+                    className="rounded-circle bg-white"
+                    style={{
+                      color: "rgb(252, 82, 0)",
+                      borderColor: "white",
+                      borderStyle: "solid",
+                    }}
+                  >
+                    <TbCirclePlus style={{ fontSize: 40 }} />
+                  </button>
+                </Link>
+              )}
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>
   );
 }
+
+NavBarPage.defaultProps = {
+  icon: (
+    <Link to="/createtraining">
+      <button
+        className="rounded-circle bg-white"
+        style={{
+          color: "rgb(252, 82, 0)",
+          borderColor: "white",
+          borderStyle: "solid",
+        }}
+      >
+        <TbCirclePlus style={{ fontSize: 40 }} />
+      </button>
+    </Link>
+  ),
+};
 
 export default NavBarPage;

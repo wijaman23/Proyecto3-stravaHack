@@ -146,7 +146,7 @@ function Estadisticas() {
               <h5 style={{ fontSize: 12, fontWeight: 300 }}>ESTE AÑO</h5>
             </div>
             <div className="d-flex mb-3 justify-content-center">
-              <h5> {sum(training, "natacion", dAño)} Km</h5>
+              <h5> {sum(training, "natacion", dAño)} m</h5>
             </div>
           </div>
         </div>

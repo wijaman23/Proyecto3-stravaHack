@@ -47,6 +47,16 @@ export function createUser(user) {
   return http.post("/register", user);
 }
 
+export function getUsers() {
+  return http.get("/users");
+}
+
+export function createTraining() {
+  return http.post("/training");
+}
+
+
+
 
 
 

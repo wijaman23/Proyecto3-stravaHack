@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
-import { FaBicycle, FaSwimmer } from "react-icons/fa";
 import { BiLike, BiComment, BiCommentX } from "react-icons/bi";
-import { GiRunningShoe } from "react-icons/gi";
 import { AuthContext } from "../../../contexts/AuthContext";
 
 function singular(kudo) {
   if (kudo === 0) {
-    return "¡Sé el primero en otorgar kudos!"
+    return "¡Sé el primero en otorgar kudos!";
   } else if (kudo === 1) {
-    return `${kudo} Kudo`
+    return `${kudo} Kudo`;
   } else {
-    return `${kudo} Kudos`
+    return `${kudo} Kudos`;
   }
 }
 
@@ -35,11 +33,29 @@ function handleAltitudeValue(altitude, distance, duration) {
 function handleStyleSport(typeSports) {
   switch (typeSports) {
     case "ciclismo":
-      return <FaBicycle style={{ fontSize: "40px" }} />;
+      return (
+        <img
+          src="https://i.ibb.co/1Rdw7BY/22.png"
+          alt="bici"
+          style={{ width: 60 }}
+        />
+      );
     case "natacion":
-      return <FaSwimmer style={{ fontSize: "40px" }} />;
+      return (
+        <img
+          src="https://i.ibb.co/nf3SCCr/33.png"
+          alt="nata"
+          style={{ width: 50 }}
+        />
+      );
     default:
-      return <GiRunningShoe style={{ fontSize: "40px" }} />;
+      return (
+        <img
+          src="https://i.ibb.co/LgyLwtd/11.png"
+          alt="carre"
+          style={{ width: 50 }}
+        />
+      );
   }
 }
 
@@ -96,12 +112,14 @@ function TrainingItem({
   createdAt,
   id,
   onHandleClickLike,
-}) 
-{
+}) {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="d-flex flex-column mt-4 p-3 border rounded" style={{ backgroundColor: "white" }}>
+    <div
+      className="d-flex flex-column mt-4 p-3 border rounded"
+      style={{ backgroundColor: "white" }}
+    >
       <div className="d-flex">
         <img
           className=" rounded-5"
@@ -118,42 +136,42 @@ function TrainingItem({
           </h6>
         </div>
       </div>
-      <div className="d-flex">
-        <div style={{ width: 20}}>{handleStyleSport(typeSports)}</div>
-        <div>
-          <div className="ms-4 my-3">
-            <h2 style={{ fontSize: 20, fontWeight: 500 }}>{title}</h2>
+      <div>
+        <div className="d-flex align-items-center">
+          <div>{handleStyleSport(typeSports)}</div>
+          <div className="ms-2 mt-2">
+            <p style={{ fontSize: 25, fontWeight: 500 }}>{title}</p>
           </div>
-          <div className="d-flex">
-            <div className="px-4 border-end">
-              <h6
-                className="text-secondary"
-                style={{ fontSize: 13, fontWeight: 300 }}
-              >
-                Distancia
-              </h6>
-              <h3 style={{ fontSize: 20, fontWeight: 400 }}>{distance} Km</h3>
-            </div>
-            <div className="px-4 border-end">
-              <h6
-                className="text-secondary "
-                style={{ fontSize: 13, fontWeight: 300 }}
-              >
-                Hora
-              </h6>
-              <h3 style={{ fontSize: 20, fontWeight: 400 }}>{duration} min</h3>
-            </div>
-            <div className="ms-4">
-              <h6
-                className="text-secondary"
-                style={{ fontSize: 13, fontWeight: 300 }}
-              >
-                {handleAltitude(altitude)}
-              </h6>
-              <h3 style={{ fontSize: 20, fontWeight: 400 }}>
-                {handleAltitudeValue(altitude, distance, duration)}
-              </h3>
-            </div>
+        </div>
+        <div className="d-flex">
+          <div className="px-3 border-end">
+            <h6
+              className="text-secondary"
+              style={{ fontSize: 13, fontWeight: 300 }}
+            >
+              Distancia
+            </h6>
+            <h3 style={{ fontSize: 20, fontWeight: 400 }}>{distance} Km</h3>
+          </div>
+          <div className="px-4 border-end">
+            <h6
+              className="text-secondary "
+              style={{ fontSize: 13, fontWeight: 300 }}
+            >
+              Hora
+            </h6>
+            <h3 style={{ fontSize: 20, fontWeight: 400 }}>{duration} min</h3>
+          </div>
+          <div className="ms-4">
+            <h6
+              className="text-secondary"
+              style={{ fontSize: 13, fontWeight: 300 }}
+            >
+              {handleAltitude(altitude)}
+            </h6>
+            <h3 style={{ fontSize: 20, fontWeight: 400 }}>
+              {handleAltitudeValue(altitude, distance, duration)}
+            </h3>
           </div>
         </div>
       </div>
@@ -170,9 +188,11 @@ function TrainingItem({
               className="btn btn-light"
               onClick={() => onHandleClickLike(id)}
             >
-            {(kudo.user === user.id) ?
-              <BiLike style={{ fontSize: "20px", color: "red" }} /> :
-              <BiLike style={{ fontSize: "20px"}} />}
+              {kudo.user === user.id ? (
+                <BiLike style={{ fontSize: "20px", color: "red" }} />
+              ) : (
+                <BiLike style={{ fontSize: "20px" }} />
+              )}
             </button>
           </div>
           <div className="mt-2 me-2">{handleComment(comments)}</div>

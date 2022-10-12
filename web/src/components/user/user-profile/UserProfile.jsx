@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { useState } from "react";
-import { useEffect } from "react";
 import * as trainingService from "../../../services/training-services";
 
 function UserProfile() {
