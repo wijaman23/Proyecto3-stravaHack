@@ -27,11 +27,9 @@ const trainingSchema = new Schema(
     altitude: {
       type: Number,
     },
-    typeSports: {
+    typesports: {
       type: String,
-      required: "Tipo de deporte is requerido",
       enum: typeSports.map((typeSport) => typeSport.value),
-      trim: true,
     },
     map: {
       type: String,

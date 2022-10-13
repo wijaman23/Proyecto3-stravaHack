@@ -6,6 +6,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import RegisterScreen from "./screens/Register/RegisterScreen";
 import HomeInicio from "./screens/Home-inicio/HomeInicio";
 import CreateTrainingScreen from "./screens/training/create-training/CreateTrainingScreen";
+import ProfileUser from "./screens/user/profile-screen/ProfileUser";
 
 function AuthGuard({ children }) {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,14 @@ function App() {
             </AuthGuard>
           }
         />
+        <Route
+          path="/profileuser"
+          element={
+            <AuthGuard>
+              <ProfileUser />
+            </AuthGuard>
+          }
+        ></Route>
         <Route path="/" element={<HomeInicio />} />
         <Route path="/register" element={<RegisterScreen />} />
       </Routes>

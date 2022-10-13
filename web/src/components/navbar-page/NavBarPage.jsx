@@ -71,7 +71,7 @@ function NavBarPage({ icon }) {
                 />
               >
                 <NavDropdown.Item>
-                  <Link to="/aciton" className="nav-link">
+                  <Link to="/profileuser" className="nav-link">
                     Mi perfil
                   </Link>
                 </NavDropdown.Item>

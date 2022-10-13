@@ -51,8 +51,8 @@ export function getUsers() {
   return http.get("/users");
 }
 
-export function createTraining() {
-  return http.post("/training");
+export function createTraining(training) {
+  return http.post("/training", training);
 }
 
 

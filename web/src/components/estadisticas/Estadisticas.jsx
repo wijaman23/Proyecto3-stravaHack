@@ -37,7 +37,7 @@ function Estadisticas() {
     for (let i = 0; i < training.length; i++) {
       if (new Date(training[i].createdAt) > time) {
         sum =
-          sum + (training[i].typeSports === style ? training[i].distance : 0);
+          sum + (training[i].typesports === style ? training[i].distance : 0);
       }
     }
     return sum;
@@ -48,7 +48,7 @@ function Estadisticas() {
     for (let i = 0; i < training.length; i++) {
       if (new Date(training[i].createdAt) > time) {
         sum =
-          sum + (training[i].typeSports === style ? training[i].duration : 0);
+          sum + (training[i].typesports === style ? training[i].duration : 0);
       }
     }
     return sum;

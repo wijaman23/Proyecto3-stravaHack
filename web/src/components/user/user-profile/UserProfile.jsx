@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import * as trainingService from "../../../services/training-services";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   const { user } = useContext(AuthContext);
@@ -47,7 +48,10 @@ function UserProfile() {
   }
 
   return (
-    <div className="border mt-4 d-flex flex-column p-3 rounded" style={{ backgroundColor: "white" }}>
+    <div
+      className="border mt-4 d-flex flex-column p-3 rounded"
+      style={{ backgroundColor: "white" }}
+    >
       <div className="d-flex justify-content-center">
         <img
           src={user.img}
@@ -55,11 +59,13 @@ function UserProfile() {
           style={{ width: 100, borderRadius: 50 }}
         />
       </div>
-      <div className="mt-3 d-flex justify-content-center">
-        <h5 style={{ fontSize: 20, fontWeight: 700 }}>
-          {user.name} {user.lastname}
-        </h5>
-      </div>
+      <Link to="/profileuser" className="text-decoration-none text-reset link-primary">
+        <div className="mt-3 d-flex justify-content-center">
+          <h5 style={{ fontSize: 20, fontWeight: 700 }}>
+            {user.name} {user.lastname}
+          </h5>
+        </div>
+      </Link>
       <hr />
       <div>
         <h6 className="mb-3 mt-2" style={{ fontSize: 13, fontWeight: 500 }}>
@@ -69,7 +75,9 @@ function UserProfile() {
           {training.length > 0 ? (
             training[lastTrain].title
           ) : (
-            <h4 style={{ fontSize: 12, fontWeight: 300 }} >Registra tu primera actividad</h4>
+            <h4 style={{ fontSize: 12, fontWeight: 300 }}>
+              Registra tu primera actividad
+            </h4>
           )}
         </h5>
         <div style={{ fontSize: 13, fontWeight: 300 }}>
