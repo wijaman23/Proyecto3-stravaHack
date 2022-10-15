@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import * as trainingService from "../../services/training-services";
-import { AuthContext } from "../../contexts/AuthContext"
+import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 function Amigos() {
   const [users, setUsers] = useState([]);
@@ -34,34 +35,41 @@ function Amigos() {
       </div>
       {shuffle(Array.from(users))
         .slice(0, 4)
-        .map((friend) => (
-          friend.id === user.id ? "" :
-          <div key={friend.id} className="d-flex mb-4">
-            <div className="d-flex align-items-center ">
-              <img
-                src={friend.img}
-                alt="user"
-                style={{ width: 50 }}
-                className="rounded-circle me-2"
-              />
+        .map((friend) =>
+          friend.id === user.id ? (
+            ""
+          ) : (
+            <div key={friend.id} className="d-flex mb-4">
+              <div className="d-flex align-items-center ">
+                <img
+                  src={friend.img}
+                  alt="user"
+                  style={{ width: 50 }}
+                  className="rounded-circle me-2"
+                />
+              </div>
+              <div>
+                <h5 style={{ fontSize: 15, fontWeight: 400 }}>
+                  {friend.name} {friend.lastname}
+                </h5>
+                <Link
+                  to={`/user/${friend.id}/training`}
+                  className="text-decoration-none text-reset link-primary"
+                >
+                  <h5
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 400,
+                      color: "rgb(252, 82, 0)",
+                    }}
+                  >
+                    Ver amigo
+                  </h5>
+                </Link>
+              </div>
             </div>
-            <div>
-              <h5 style={{ fontSize: 15, fontWeight: 400 }}>
-                {friend.name} {friend.lastname}
-              </h5>
-              <h5
-                style={{
-                  fontSize: 12,
-                  fontWeight: 400,
-                  color: "rgb(252, 82, 0)",
-                }}
-              >
-                {" "}
-                Ver amigo{" "}
-              </h5>
-            </div>
-          </div>
-        ))}
+          )
+        )}
     </div>
   );
 }

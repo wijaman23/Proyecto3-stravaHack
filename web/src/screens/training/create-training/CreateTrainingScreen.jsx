@@ -18,7 +18,6 @@ function CreateTrainingScreen() {
   } = useForm({ mode: "onTouched" });
 
   const handleCreateTrainingSubmit = (data) => {
-    console.log(data);
     trainingService
       .createTraining(data)
       .then((training) => navigation("/home"))

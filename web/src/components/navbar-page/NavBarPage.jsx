@@ -44,24 +44,7 @@ function NavBarPage({ icon }) {
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
               navbarScroll
-            >
-              <NavLink
-                to="/misrutas"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-              >
-                Mis rutas
-              </NavLink>
-              <NavLink
-                to="/amigos"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-              >
-                Amigos
-              </NavLink>
-            </Nav>
+            ></Nav>
             <div>
               <NavDropdown
                 title=<img
@@ -71,12 +54,12 @@ function NavBarPage({ icon }) {
                 />
               >
                 <NavDropdown.Item>
-                  <Link to="/profileuser" className="nav-link">
+                  <Link to={`/user/${user.id}/training`} className="nav-link">
                     Mi perfil
                   </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/aciton2" className="nav-link">
+                  <Link to="/edit" className="nav-link">
                     Configuracion
                   </Link>
                 </NavDropdown.Item>

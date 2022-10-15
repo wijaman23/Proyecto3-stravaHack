@@ -19,7 +19,6 @@ function RegisterScreen() {
   } = useForm({ mode: "onTouched" });
 
   const handleCreateTrainingSubmit = (user) => {
-    console.log(user);
     trainingService
       .createUser(user)
       .then((user) => navigation("/login"))

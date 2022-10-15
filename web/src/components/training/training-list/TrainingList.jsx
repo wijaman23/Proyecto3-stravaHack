@@ -24,7 +24,7 @@ function TrainingList() {
 
   return (
     <div>
-      {training.map((training) => (
+      {training.slice(0).reverse().map((training) => (
         <div className="col mb-5" key={training.id}>
           <TrainingItem {...training} onHandleClickLike={handleClickLike} />
         </div>

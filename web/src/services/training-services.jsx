@@ -55,6 +55,19 @@ export function createTraining(training) {
   return http.post("/training", training);
 }
 
+export function editUser(id, user) {
+  return http.patch(`/users/${id}`, user);
+}
+
+export function detailTraining(id) {
+  return http.get(`/training/${id}`)
+}
+
+export function createComment(id, comment) {
+  return http.post(`/training/${id}/comments/`, comment);
+}
+
+
 
 
 

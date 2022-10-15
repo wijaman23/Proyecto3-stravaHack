@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BiLike, BiComment, BiCommentX } from "react-icons/bi";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 function singular(kudo) {
   if (kudo === 0) {
@@ -26,12 +27,12 @@ function handleAltitude(altitude) {
 
 function handleAltitudeValue(altitude, distance, duration) {
   return altitude
-    ? `${altitude} Km`
-    : `${((distance * duration) / 60).toFixed(2)} /100 m`;
+    ? `${altitude} m`
+    : `${((100 * duration) / distance).toFixed(2)} /100 m`;
 }
 
-function handleStyleSport(typeSports) {
-  switch (typeSports) {
+function handleStyleSport(typesports) {
+  switch (typesports) {
     case "ciclismo":
       return (
         <img
@@ -104,7 +105,7 @@ function TrainingItem({
   distance,
   duration,
   altitude,
-  typeSports,
+  typesports,
   map,
   owner,
   comments,
@@ -121,15 +122,25 @@ function TrainingItem({
       style={{ backgroundColor: "white" }}
     >
       <div className="d-flex">
-        <img
-          className=" rounded-5"
-          src={owner.img}
-          alt={title}
-          style={{ maxWidth: 40, maxHeight: 40 }}
-        />
+        <Link
+          to={`/user/${owner.id}/training`}
+          className="text-decoration-none text-reset link-primary"
+        >
+          <img
+            className=" rounded-5"
+            src={owner.img}
+            alt={title}
+            style={{ maxWidth: 40, maxHeight: 40 }}
+          />
+        </Link>
         <div className="ms-4 d-flex flex-column">
           <h6 style={{ fontSize: 15, fontWeight: 500 }}>
-            {owner.name} {owner.lastname}
+            <Link
+              to={`/user/${owner.id}/training`}
+              className="text-decoration-none text-reset link-danger"
+            >
+              {owner.name} {owner.lastname}
+            </Link>
           </h6>
           <h6 style={{ fontSize: 12, fontWeight: 300 }}>
             {timeFormat(createdAt)}
@@ -138,9 +149,14 @@ function TrainingItem({
       </div>
       <div>
         <div className="d-flex align-items-center">
-          <div>{handleStyleSport(typeSports)}</div>
+          <div>{handleStyleSport(typesports)}</div>
           <div className="ms-2 mt-2">
-            <p style={{ fontSize: 25, fontWeight: 500 }}>{title}</p>
+            <Link
+              to={`/training/${id}`}
+              className="text-decoration-none text-reset link-danger"
+            >
+              <p style={{ fontSize: 25, fontWeight: 500 }}>{title}</p>
+            </Link>
           </div>
         </div>
         <div className="d-flex">
@@ -151,7 +167,9 @@ function TrainingItem({
             >
               Distancia
             </h6>
-            <h3 style={{ fontSize: 20, fontWeight: 400 }}>{distance} Km</h3>
+            <h3 style={{ fontSize: 20, fontWeight: 400 }}>
+              {distance} {typesports === "natacion" ? "m" : "Km"}
+            </h3>
           </div>
           <div className="px-4 border-end">
             <h6

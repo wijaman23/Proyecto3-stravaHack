@@ -2,15 +2,22 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import * as trainingService from "../../../services/training-services";
 import { Link } from "react-router-dom";
+import { TbMapPin } from "react-icons/tb"
+
 
 function UserProfile() {
   const { user } = useContext(AuthContext);
   const [training, setTraining] = useState([]);
+  const [userdata, setUserdata] = useState([]);
 
   useEffect(() => {
     trainingService
       .userTraining(user.id)
       .then((training) => setTraining(training))
+      .catch((error) => console.error(error));
+    trainingService
+      .detailUsers(user.id)
+      .then((userdata) => setUserdata(userdata))
       .catch((error) => console.error(error));
   }, [user.id]);
 
@@ -54,18 +61,23 @@ function UserProfile() {
     >
       <div className="d-flex justify-content-center">
         <img
-          src={user.img}
+          src={userdata.img}
           alt="imagen"
           style={{ width: 100, borderRadius: 50 }}
         />
       </div>
-      <Link to="/profileuser" className="text-decoration-none text-reset link-primary">
+      <Link to={`/user/${user.id}/training`} className="text-decoration-none text-reset link-primary">
         <div className="mt-3 d-flex justify-content-center">
           <h5 style={{ fontSize: 20, fontWeight: 700 }}>
-            {user.name} {user.lastname}
+            {userdata.name} {userdata.lastname}
           </h5>
         </div>
       </Link>
+      <div>
+        <h5 className="ms-4" style={{ fontSize: 15, fontWeight: 300 }}>
+          {userdata.city ?  <TbMapPin className="me-1" /> : ""}{userdata.city ? userdata.city : ""}
+        </h5>
+      </div>
       <hr />
       <div>
         <h6 className="mb-3 mt-2" style={{ fontSize: 13, fontWeight: 500 }}>
@@ -75,9 +87,9 @@ function UserProfile() {
           {training.length > 0 ? (
             training[lastTrain].title
           ) : (
-            <h4 style={{ fontSize: 12, fontWeight: 300 }}>
+            <p style={{ fontSize: 12, fontWeight: 300 }}>
               Registra tu primera actividad
-            </h4>
+            </p>
           )}
         </h5>
         <div style={{ fontSize: 13, fontWeight: 300 }}>

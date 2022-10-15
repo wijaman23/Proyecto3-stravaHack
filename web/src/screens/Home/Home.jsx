@@ -8,21 +8,20 @@ import UserProfile from "../../components/user/user-profile/UserProfile";
 function Home() {
   return (
     <div>
-    <NavBarPage />
-    <div className="d-flex container" style={{ marginTop: 70 }}>
-      <div className="col-3 me-3" >
-        <UserProfile />
-        <Estadisticas />
-      </div>
-      <div className="col-5">
-        <TrainingList />
-      </div>
-      <div className="col-3 ms-3">
-        <Amigos />
+        <NavBarPage />
+      <div className="d-flex container" style={{ marginTop: 70 }}>
+        <div className="col-3 position-fixed" style={{ width: 350 }}>
+          <UserProfile />
+          <Estadisticas />
+        </div>
+        <div className="col-5" style={{ width: 550, marginLeft: 400}}>
+          <TrainingList />
+        </div>
+        <div className="col-3 position-fixed" style={{ width: 350, marginLeft: 1000 }}>
+          <Amigos />
+        </div>
       </div>
     </div>
-    </div>
-
   );
 }
 
