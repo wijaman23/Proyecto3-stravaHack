@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { RiDeleteBinFill } from "react-icons/ri";
+import React, { useState, useEffect, useContext } from "react";
 import * as trainingService from "../../../services/training-services";
 import Footer from "../../../components/footer/Footer";
 import NavBarPage from "../../../components/navbar-page/NavBarPage";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function TrainingDetail() {
   const [training, setTraining] = useState([]);
   const [reload, setReload] = useState(false);
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
 
   const {
     register,
+    reset,
     handleSubmit,
     setError,
     formState: { errors, isValid },
@@ -22,16 +26,26 @@ function TrainingDetail() {
       .createComment(id, data)
       .then((comment) => {
         setReload(!reload);
+        reset();
       })
       .catch((error) => {
         if (error.response?.data?.errors) {
           const { errors } = error.response.data;
-          console.log(errors);
           Object.keys(error.response.data.errors).forEach((error) => {
             setError(error, { message: errors[error].message });
           });
         }
       });
+  };
+
+  const handleDeleteCommentSubmit = (comment) => {
+    trainingService
+      .deleteComment(id, comment)
+      .then((comment) => {
+        setReload(!reload);
+        console.log("entra")
+      })
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
@@ -95,7 +109,7 @@ function TrainingDetail() {
       <NavBarPage />
       <div className="d-flex flex-column container" style={{ marginTop: 70 }}>
         <div className="mt-5 ps-4 pt-2">
-          <h5 style={{ fontSize: 20, fontWeight: 400 }}>
+          <h5 style={{ fontSize: 25, fontWeight: 600 }}>
             {training.owner.name} - {training.typesports}
           </h5>
         </div>
@@ -153,9 +167,11 @@ function TrainingDetail() {
               </div>
               <div>
                 <h5 style={{ fontSize: 30, fontWeight: 300 }}>
-                  {(training.duration *
+                  {(
+                    training.duration *
                     70 *
-                    (training.distance / training.duration)).toFixed(2)}
+                    (training.distance / training.duration)
+                  ).toFixed(2)}
                   kj
                 </h5>
                 <h5 style={{ fontSize: 15, fontWeight: 300 }}>
@@ -165,66 +181,93 @@ function TrainingDetail() {
             </div>
           </div>
         </div>
-        <div className="border p-3 mb-2">
+        <div className="border p-2 mb-2 rounded-3">
           {training?.comments?.map((comment) => (
-            <div className="d-flex mb-4 border-bottom pb-2">
-              <div>
+            <div
+              key={comment.id}
+              className="d-flex m-2 border-bottom justify-content-between py-2 rounded 2"
+              style={{ backgroundColor: "rgba(252, 82, 0,0.03)" }}
+            >
+              <div className="d-flex">
                 <img
                   src={comment.user.img}
                   alt="user"
-                  style={{ width: 50 }}
-                  className="rounded-circle me-2"
+                  style={{ height: 50 }}
+                  className="rounded-circle mx-2 my-3"
                 />
-              </div>
-              <div className="d-flex">
-                <div className="me-5">
+                <div className="me-5 my-3">
                   <div className="d-flex">
-                    <h5 style={{ fontSize: 12, fontWeight: 700 }}>
+                    <h5
+                      className="ms-2"
+                      style={{ fontSize: 12, fontWeight: 700 }}
+                    >
                       {comment.user.name} {comment.user.lastname} -
                     </h5>
                     <h5 style={{ fontSize: 10, fontWeight: 300 }}>
                       Creado el {timeFormat(comment.createdAt)}
                     </h5>
                   </div>
-                  <h5 style={{ fontSize: 12, fontWeight: 300 }}>
-                    {comment.text}
-                  </h5>
+                  <div className="d-flex justify-content-between">
+                    <p
+                      className="ms-2"
+                      style={{ fontSize: 15, fontWeight: 300 }}
+                    >
+                      {comment.text}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <div>
-          <form onSubmit={handleSubmit(handleCreateCommentSubmit)}>
-            <div>
-              <div className="input-group mb-1 " style={{ width: 650 }}>
-                <input
-                  type="text"
-                  className={`form-control ${errors.text ? "is-invalid" : ""}`}
-                  {...register("text", {
-                    required: "Comentario es requerido",
-                    min: {
-                      value: 5,
-                      message: "Minimo 5 caracteres",
-                    },
-                  })}
-                />
-                {errors.text && (
-                  <div className="invalid-feedback">{errors.text.message}</div>
+              <div className="mt-4 me-2 p-2 ">
+                {comment.user.email === user.email ? (
+                  <button
+                    style={{ border: "none", background: "none", padding: 0 }}
+                    type="submit"
+                    onClick={()=>handleDeleteCommentSubmit(comment.id)}
+                  >
+                    <RiDeleteBinFill />
+                  </button>
+                ) : (
+                  ""
                 )}
               </div>
             </div>
-            <button
-              className="btn mt-2 mb-5 me-3"
-              style={{ width: 80 }}
-              type="submit"
-              disabled={!isValid}
-            >
-              Publicar
-            </button>
-          </form>
+          ))}
+          <div className="ms-4 mt-4">
+            <form onSubmit={handleSubmit(handleCreateCommentSubmit)}>
+              <div>
+                <div className="input-group mb-1 " style={{ width: 650 }}>
+                  <input
+                    type="text"
+                    className={`form-control ${
+                      errors.text ? "is-invalid" : ""
+                    }`}
+                    placeholder="Introduce tu comentario"
+                    {...register("text", {
+                      min: {
+                        value: 5,
+                        message: "Minimo 5 caracteres",
+                      },
+                    })}
+                  />
+                  {errors.text && (
+                    <div className="invalid-feedback">
+                      {errors.text.message}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <button
+                className="btn btn-outline-success mt-2 mb-2 me-3"
+                style={{ width: 80 }}
+                type="submit"
+                disabled={!isValid}
+              >
+                Publicar
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="mb-5">
+        <div className="d-flex mt-5 mb-5">
           <img className="img-fluid w-50" src={training.map} alt="mapa" />
         </div>
       </div>

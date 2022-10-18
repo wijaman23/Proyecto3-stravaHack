@@ -193,27 +193,32 @@ function TrainingItem({
           </div>
         </div>
       </div>
-      <div className="mt-4 mb-3">
-        <img src={map} alt={title} style={{ width: 500, height: 200 }} />
-      </div>
+      {typesports === "natacion" ? (
+        ""
+      ) : (
+        <div className="mt-4 mb-3">
+          <img src={map} alt={title} style={{ width: 500, height: 200 }} />
+        </div>
+      )}
       <div className="d-flex justify-content-between">
         <div className="mt-1" style={{ fontSize: 12, fontWeight: 300 }}>
           {singular(kudo)}
         </div>
         <div className="d-flex">
-          <div>
-            <button
-              className="btn btn-light"
+          <div className="d-flex me-1">
+            <span
               onClick={() => onHandleClickLike(id)}
+              style={{ cursor: "pointer" }}
+              className="mt-2 me-2"
             >
               {kudo.user === user.id ? (
                 <BiLike style={{ fontSize: "20px", color: "red" }} />
               ) : (
                 <BiLike style={{ fontSize: "20px" }} />
               )}
-            </button>
+            </span>
+            <span className="mt-2 me-2">{handleComment(comments)}</span>
           </div>
-          <div className="mt-2 me-2">{handleComment(comments)}</div>
         </div>
       </div>
     </div>

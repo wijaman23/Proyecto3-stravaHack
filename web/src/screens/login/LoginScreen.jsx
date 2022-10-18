@@ -9,10 +9,13 @@ import { loginApi } from "../../services/training-services";
 import { AuthContext } from "../../contexts/AuthContext";
 import NavBarPageLogin from "../../components/navbar-page/NavBarPageLogin";
 import Footer from "../../components/footer/Footer";
+import { useState } from "react";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 
 function LoginScreen() {
   const navigation = useNavigate();
   const value = useContext(AuthContext);
+  const [showPwd, setshowPwd] = useState(false);
 
   const {
     register,
@@ -44,9 +47,7 @@ function LoginScreen() {
       <div className="mb-5 d-flex justify-content-center mt-5">
         <div className="d-flex align-content-center">
           <div className="bg-light p-4 border border-secondary rounded">
-            <h2 className="p-2">
-              Inicia sesión en StravaHack
-            </h2>
+            <h2 className="p-2">Inicia sesión en StravaHack</h2>
             <p className="ms-2" style={{ fontSize: 13 }}>
               ¿Todavía no eres miembro?
               <Link to="/register"> Crea tu cuenta</Link>
@@ -59,10 +60,10 @@ function LoginScreen() {
                 <Form.Label>Correo electronico</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Introduzca e-mail"
+                  placeholder="Email"
                   className={`form-control ${errors.email ? "is-invalid" : ""}`}
                   {...register("email", {
-                    required: "Email is required",
+                    required: "Email es requerido",
                   })}
                 />
                 {errors.email && (
@@ -71,22 +72,29 @@ function LoginScreen() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Introduzca contraseña"
-                  className={`form-control ${
-                    errors.password ? "is-invalid" : ""
-                  }`}
-                  {...register("password", {
-                    required: "Password is required",
-                  })}
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">
-                    {errors.password.message}
-                  </div>
-                )}
+                <div className="input-group mb-1">
+                  <input
+                    type={showPwd ? "text" : "password"}
+                    placeholder="Contraseña"
+                    className={`form-control ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
+                    {...register("password", {
+                      required: "Contraseña es requerida",
+                    })}
+                  />
+
+                  <span className="input-group-text" onClick={() => setshowPwd(!showPwd)}>
+                    {showPwd ? <FaRegEye /> : <FaEyeSlash /> }
+                  </span>
+                  {errors.password && (
+                    <div className="invalid-feedback">
+                      {errors.password.message}
+                    </div>
+                  )}
+                </div>
               </Form.Group>
+
               <Button
                 className="mb-3"
                 variant="primary"
@@ -98,7 +106,8 @@ function LoginScreen() {
               <hr></hr>
               <p style={{ fontSize: 10 }}>
                 Al continuar, estás aceptando las Condiciones de uso y la
-                Política de Privacidad <br></br>de StravaHack, incluyendo el uso de Cookies.
+                Política de Privacidad <br></br>de StravaHack, incluyendo el uso
+                de Cookies.
               </p>
             </Form>
           </div>

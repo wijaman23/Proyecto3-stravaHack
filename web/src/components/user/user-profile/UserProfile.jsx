@@ -67,7 +67,7 @@ function UserProfile() {
         />
       </div>
       <Link to={`/user/${user.id}/training`} className="text-decoration-none text-reset link-primary">
-        <div className="mt-3 d-flex justify-content-center">
+        <div className="mt-3 d-flex ms-4">
           <h5 style={{ fontSize: 20, fontWeight: 700 }}>
             {userdata.name} {userdata.lastname}
           </h5>

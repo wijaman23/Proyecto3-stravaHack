@@ -67,6 +67,9 @@ export function createComment(id, comment) {
   return http.post(`/training/${id}/comments/`, comment);
 }
 
+export function deleteComment(idTraining, idComment) {
+  return http.delete(`/training/${idTraining}/comments/${idComment}`)
+}
 
 
 

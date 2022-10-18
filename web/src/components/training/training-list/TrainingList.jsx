@@ -9,7 +9,7 @@ function TrainingList() {
   const handleClickLike = (id) => {
     trainingService
       .setLike(id)
-      .then((like) => {
+      .then((kudo) => {
         setReload(!reload);
       })
       .catch((error) => console.error(error));

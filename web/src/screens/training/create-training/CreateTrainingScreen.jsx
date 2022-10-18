@@ -2,18 +2,20 @@ import React from "react";
 import NavBarPage from "../../../components/navbar-page/NavBarPage";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import * as trainingService from "../../../services/training-services"
+import * as trainingService from "../../../services/training-services";
 import Select from "react-select";
 import typesports from "../../../data/typesports";
 import Footer from "../../../components/footer/Footer";
 
 function CreateTrainingScreen() {
   const navigation = useNavigate();
+
   const {
     register,
     handleSubmit,
     setError,
     control,
+    watch,
     formState: { errors, isValid },
   } = useForm({ mode: "onTouched" });
 
@@ -31,7 +33,6 @@ function CreateTrainingScreen() {
         }
       });
   };
-  
 
   return (
     <>
@@ -45,7 +46,7 @@ function CreateTrainingScreen() {
         </div>
         <form onSubmit={handleSubmit(handleCreateTrainingSubmit)}>
           <div>
-            <div className="mb-5">
+            <div className="mb-5" style={{ width: 700 }}>
               <Controller
                 name="typesports"
                 control={control}
@@ -60,7 +61,9 @@ function CreateTrainingScreen() {
                       value={typesports.find(
                         (typesport) => typesport.value === field.value
                       )}
-                      onChange={(typesports) => field.onChange(typesports.value)}
+                      onChange={(typesports) =>
+                        field.onChange(typesports.value)
+                      }
                       onBlur={field.onBlur}
                       options={typesports}
                       styles={{
@@ -70,9 +73,9 @@ function CreateTrainingScreen() {
                         }),
                       }}
                     />
-                    {errors.typeSports && (
+                    {errors.typesports && (
                       <div className="invalid-feedback">
-                        {errors.typeSports.message}
+                        {errors.typesports.message}
                       </div>
                     )}
                   </div>
@@ -98,7 +101,9 @@ function CreateTrainingScreen() {
                     })}
                   />
                   <span className="input-group-text" style={{ width: 100 }}>
-                    Kilometros
+                    {watch("typesports") === "natacion"
+                      ? "Metros"
+                      : "Kilometros"}
                   </span>
                   {errors.distance && (
                     <div className="invalid-feedback">
@@ -109,7 +114,7 @@ function CreateTrainingScreen() {
               </div>
               <div className="mx-5">
                 <label className="mb-1">Duracion</label>
-                <div className="input-group mb-1" style={{ width: 200 }}>
+                <div className="input-group mb-5" style={{ width: 200 }}>
                   <input
                     type="number"
                     className={`form-control ${
@@ -133,28 +138,30 @@ function CreateTrainingScreen() {
                   )}
                 </div>
               </div>
-              <div>
-                <label className="mb-1">Altitud</label>
-                <div className="input-group mb-5" style={{ width: 200 }}>
-                  <input
-                    type="number"
-                    className={`form-control ${
-                      errors.altitude ? "is-invalid" : ""
-                    }`}
-                    {...register("altitude", {
-                      
-                    })}
-                  />
-                  <span className="input-group-text" style={{ width: 100 }}>
-                    Metros
-                  </span>
-                  {errors.altitude && (
-                    <div className="invalid-feedback">
-                      {errors.altitude.message}
-                    </div>
-                  )}
+              {watch("typesports") === "natacion" ? (
+                ""
+              ) : (
+                <div>
+                  <label className="mb-1">Altitud</label>
+                  <div className="input-group mb-5" style={{ width: 200 }}>
+                    <input
+                      type="number"
+                      className={`form-control ${
+                        errors.altitude ? "is-invalid" : ""
+                      }`}
+                      {...register("altitude", {})}
+                    />
+                    <span className="input-group-text" style={{ width: 100 }}>
+                      Metros
+                    </span>
+                    {errors.altitude && (
+                      <div className="invalid-feedback">
+                        {errors.altitude.message}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <div>
               <label className="mb-1">Titulo</label>

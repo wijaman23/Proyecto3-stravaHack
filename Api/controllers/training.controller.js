@@ -12,10 +12,10 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   Training.find()
-    .populate("owner")
+    .populate("owner", " name lastname email img")
     .populate({
-      path:"comments",
-      populate: {path: "user"}
+      path: "comments",
+      populate: { path: "user" },
     })
     .populate("kudo")
     .then((training) => res.status(200).json(training))
@@ -30,10 +30,10 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Training.findById(req.params.id)
-    .populate("owner", "name email")
+    .populate("owner", " name lastname email img")
     .populate({
-      path:"comments",
-      populate: {path: "user"}
+      path: "comments",
+      populate: { path: "user" },
     })
     .populate("kudo")
     .then((training) => {
@@ -47,25 +47,23 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.userTraining = (req, res, next) => {
-  const user = req.params.id
+  const user = req.params.id;
 
-  Training.find({owner: user})
-    .populate("owner", "name email")
+  Training.find({ owner: user })
+    .populate("owner", "name lastname email img")
     .populate({
-      path:"comments",
-      populate: {path: "user"}
+      path: "comments",
+      populate: { path: "user" },
     })
     .populate("kudo")
     .then((training) => {
-      if(training) {
-        res.status(200).json(training)
-      }
-      else if (training) {
+      if (training) {
+        res.status(200).json(training);
+      } else if (training) {
         next(createError(403, "Peticion rechazada"));
       } else {
         next(createError(404, "Usuario no encontrado"));
       }
-
     })
     .catch((error) => next(error));
 };
