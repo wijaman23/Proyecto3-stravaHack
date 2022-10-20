@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as trainingService from "../../../services/training-services";
 import Select from "react-select";
 import typesports from "../../../data/typesports";
+import maps from "../../../data/maps";
 import Footer from "../../../components/footer/Footer";
 
 function CreateTrainingScreen() {
@@ -178,6 +179,42 @@ function CreateTrainingScreen() {
                   <div className="invalid-feedback">{errors.title.message}</div>
                 )}
               </div>
+            </div>
+            <div className="mb-5" style={{ width: 200 }}>
+              <Controller
+                name="maps"
+                control={control}
+                render={({ field }) => (
+                  <div>
+                    <div>
+                      <label className="mb-1">Ciudad</label>
+                    </div>
+                    <div className="input-group mb-1"></div>
+                    <Select
+                      className="form-control p-0"
+                      value={maps.find(
+                        (maps) => maps.value === field.value
+                      )}
+                      onChange={(maps) =>
+                        field.onChange(maps.value)
+                      }
+                      onBlur={field.onBlur}
+                      options={maps}
+                      styles={{
+                        control: (base) => ({
+                          ...base,
+                          border: 0,
+                        }),
+                      }}
+                    />
+                    {errors.maps && (
+                      <div className="invalid-feedback">
+                        {errors.maps.message}
+                      </div>
+                    )}
+                  </div>
+                )}
+              />
             </div>
             <div>
               <label className="mb-1">Descripción</label>

@@ -43,7 +43,7 @@ function TrainingDetail() {
       .deleteComment(id, comment)
       .then((comment) => {
         setReload(!reload);
-        console.log("entra")
+        console.log("entra");
       })
       .catch((error) => console.error(error));
   };
@@ -102,7 +102,14 @@ function TrainingDetail() {
     return `${hrs}h:${min}min`;
   }
 
-  if (!training.owner) return "";
+  if (!training.owner)
+    return (
+      <center>
+        <div className="mt-5 p-5 bg-white">
+          <h1 className="mt-5 p-5">Loading</h1>
+        </div>
+      </center>
+    );
 
   return (
     <div className="bg-white">
@@ -222,7 +229,7 @@ function TrainingDetail() {
                   <button
                     style={{ border: "none", background: "none", padding: 0 }}
                     type="submit"
-                    onClick={()=>handleDeleteCommentSubmit(comment.id)}
+                    onClick={() => handleDeleteCommentSubmit(comment.id)}
                   >
                     <RiDeleteBinFill />
                   </button>
@@ -268,7 +275,7 @@ function TrainingDetail() {
           </div>
         </div>
         <div className="d-flex mt-5 mb-5">
-          <img className="img-fluid w-50" src={training.map} alt="mapa" />
+          <img className="img-fluid w-50" src={training.maps} alt="mapa" />
         </div>
       </div>
       <Footer />

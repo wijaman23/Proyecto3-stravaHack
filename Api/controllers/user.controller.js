@@ -60,12 +60,17 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   User.find()
+    .populate("kudo")
     .then((user) => res.json(user))
     .catch((error) => next(error));
 };
 
 module.exports.detail = (req, res, next) => {
   User.findById(req.params.id)
+  .populate({
+    path: "kudo",
+    populate: { path: "user" },
+  })
     .then((user) => {
       if (user) {
         res.json(user);

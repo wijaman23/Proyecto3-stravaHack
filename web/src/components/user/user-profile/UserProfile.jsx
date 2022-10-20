@@ -53,6 +53,14 @@ function UserProfile() {
 
     return dayNew + " de " + b + " de " + time.slice(0, 4);
   }
+  if (!userdata.img)
+  return (
+    <center>
+      <div className="mt-5 p-5 bg-white">
+        <h1 className="mt-5 p-5">Loading</h1>
+      </div>
+    </center>
+  );
 
   return (
     <div

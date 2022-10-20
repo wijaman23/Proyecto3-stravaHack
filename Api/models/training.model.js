@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const typeSports = require("../data/typeSports");
+const maps = require("../data/maps")
 
 const trainingSchema = new Schema(
   {
@@ -31,21 +32,9 @@ const trainingSchema = new Schema(
       type: String,
       enum: typeSports.map((typeSport) => typeSport.value),
     },
-    map: {
+    maps: {
       type: String,
-      default:
-        "https://newspack-hipertextual.s3.amazonaws.com/wp-content/uploads/2020/04/hipertextual-mas-facil-durante-cuarentena-google-maps-muestra-que-restaurantes-envian-domicilio-2020815281.jpg",
-      validate: {
-        validator: function (img) {
-          try {
-            new URL(img);
-            return true;
-          } catch (error) {
-            return false;
-          }
-        },
-        message: (img) => "Invalida URL",
-      },
+      enum: maps.map((map) => map.value),
     },
     owner: {
       ref: "User",

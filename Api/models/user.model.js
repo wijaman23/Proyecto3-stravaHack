@@ -68,6 +68,12 @@ const userSchema = new Schema(
   }
 );
 
+userSchema.virtual("kudo", {
+  ref: "Kudo",
+  localField: "_id",
+  foreignField: "user",
+});
+
 userSchema.pre("save", function (next) {
   if (this.isModified("password")) {
     bcrypt

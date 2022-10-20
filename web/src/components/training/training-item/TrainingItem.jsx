@@ -106,7 +106,7 @@ function TrainingItem({
   duration,
   altitude,
   typesports,
-  map,
+  maps,
   owner,
   comments,
   kudo,
@@ -115,6 +115,15 @@ function TrainingItem({
   onHandleClickLike,
 }) {
   const { user } = useContext(AuthContext);
+
+  if (!owner)
+  return (
+    <center>
+      <div className="mt-5 p-5 bg-white">
+        <h1 className="mt-5 p-5">Loading</h1>
+      </div>
+    </center>
+  );
 
   return (
     <div
@@ -197,19 +206,19 @@ function TrainingItem({
         ""
       ) : (
         <div className="mt-4 mb-3">
-          <img src={map} alt={title} style={{ width: 500, height: 200 }} />
+          <img src={maps} alt={title} style={{ width: 500, height: 200 }} />
         </div>
       )}
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between mt-2">
         <div className="mt-1" style={{ fontSize: 12, fontWeight: 300 }}>
           {singular(kudo)}
         </div>
-        <div className="d-flex">
+        <div className="d-flex ">
           <div className="d-flex me-1">
             <span
               onClick={() => onHandleClickLike(id)}
               style={{ cursor: "pointer" }}
-              className="mt-2 me-2"
+              className="me-2"
             >
               {kudo.user === user.id ? (
                 <BiLike style={{ fontSize: "20px", color: "red" }} />
@@ -217,7 +226,12 @@ function TrainingItem({
                 <BiLike style={{ fontSize: "20px" }} />
               )}
             </span>
-            <span className="mt-2 me-2">{handleComment(comments)}</span>
+            <Link
+              to={`/training/${id}`}
+              className="text-decoration-none text-reset link-danger"
+            >
+              <span className="mt-2 me-2">{handleComment(comments)}</span>
+            </Link>
           </div>
         </div>
       </div>
