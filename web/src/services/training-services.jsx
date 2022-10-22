@@ -32,15 +32,15 @@ export function getTraining() {
 }
 
 export function setLike(id) {
-  return http.post(`/training/${id}/kudos`)
+  return http.post(`/training/${id}/kudos`);
 }
 
 export function detailUsers(id) {
-  return http.get(`/users/${id}`)
+  return http.get(`/users/${id}`);
 }
 
 export function userTraining(id) {
-  return http.get(`/user/${id}/training`)
+  return http.get(`/user/${id}/training`);
 }
 
 export function createUser(user) {
@@ -60,7 +60,7 @@ export function editUser(id, user) {
 }
 
 export function detailTraining(id) {
-  return http.get(`/training/${id}`)
+  return http.get(`/training/${id}`);
 }
 
 export function createComment(id, comment) {
@@ -68,11 +68,9 @@ export function createComment(id, comment) {
 }
 
 export function deleteComment(idTraining, idComment) {
-  return http.delete(`/training/${idTraining}/comments/${idComment}`)
+  return http.delete(`/training/${idTraining}/comments/${idComment}`);
 }
 
-
-
-
-
-
+export function deleteTraining(idTraining) {
+  return http.delete(`/training/${idTraining}`);
+}

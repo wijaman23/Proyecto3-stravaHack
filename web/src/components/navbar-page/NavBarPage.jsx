@@ -25,8 +25,8 @@ function NavBarPage({ icon }) {
   const { handleSubmit } = useForm({ mode: "onTouched" });
 
   return (
-    <div>
-      <Navbar expand="lg" fixed="top">
+    <div >
+      <Navbar expand="lg" fixed="top" className="bg-white">
         <Container fluid>
           <NavLink to="/home">
             <Navbar.Brand style={{ marginLeft: 100, padding: 10 }}>

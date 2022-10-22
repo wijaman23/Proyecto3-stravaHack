@@ -10,11 +10,13 @@ const trainingSchema = new Schema(
       required: "Titulo es requerido",
       trim: true,
       minLength: [5, `Titulo debe ser mayor que 5 caracteres`],
-      maxLength: [80, `Titulo debe ser menor que 80 caracteres`],
+      maxLength: [30, `Titulo debe ser menor que 30 caracteres`],
     },
     description: {
       type: String,
       required: "Descripcion es requerida",
+      minLength: [5, `Descripcion debe ser mayor que 5 caracteres`],
+      maxLength: [70, `Descripcion debe ser menor que 70 caracteres`],
       trim: true,
     },
     distance: {
@@ -65,7 +67,6 @@ trainingSchema.virtual("kudo", {
   ref: "Kudo",
   localField: "_id",
   foreignField: "training",
-  count: true,
 });
 
 const Training = mongoose.model("Training", trainingSchema);

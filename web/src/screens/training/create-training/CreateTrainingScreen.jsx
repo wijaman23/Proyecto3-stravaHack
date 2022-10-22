@@ -192,12 +192,8 @@ function CreateTrainingScreen() {
                     <div className="input-group mb-1"></div>
                     <Select
                       className="form-control p-0"
-                      value={maps.find(
-                        (maps) => maps.value === field.value
-                      )}
-                      onChange={(maps) =>
-                        field.onChange(maps.value)
-                      }
+                      value={maps.find((maps) => maps.value === field.value)}
+                      onChange={(maps) => field.onChange(maps.value)}
                       onBlur={field.onBlur}
                       options={maps}
                       styles={{

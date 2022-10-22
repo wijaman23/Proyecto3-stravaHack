@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import * as trainingService from "../../../services/training-services";
 import { Link } from "react-router-dom";
-import { TbMapPin } from "react-icons/tb"
-
+import { TbMapPin } from "react-icons/tb";
+import './UserProfile.css';
+import { FaSpinner } from 'react-icons/fa';
 
 function UserProfile() {
   const { user } = useContext(AuthContext);
@@ -54,13 +55,13 @@ function UserProfile() {
     return dayNew + " de " + b + " de " + time.slice(0, 4);
   }
   if (!userdata.img)
-  return (
-    <center>
-      <div className="mt-5 p-5 bg-white">
-        <h1 className="mt-5 p-5">Loading</h1>
-      </div>
-    </center>
-  );
+    return (
+      <center>
+        <div className="mt-5 p-5 bg-white">
+          <FaSpinner icon="spinner" className="spinner" style={{ fontSize: 100}} />
+        </div>
+      </center>
+    );
 
   return (
     <div
@@ -71,10 +72,14 @@ function UserProfile() {
         <img
           src={userdata.img}
           alt="imagen"
-          style={{ width: 100, borderRadius: 50 }}
+          style={{ width: 100 }}
+          className="rounded-circle"
         />
       </div>
-      <Link to={`/user/${user.id}/training`} className="text-decoration-none text-reset link-primary">
+      <Link
+        to={`/user/${user.id}/training`}
+        className="text-decoration-none text-reset link-primary"
+      >
         <div className="mt-3 d-flex ms-4">
           <h5 style={{ fontSize: 20, fontWeight: 700 }}>
             {userdata.name} {userdata.lastname}
@@ -83,7 +88,8 @@ function UserProfile() {
       </Link>
       <div>
         <h5 className="ms-4" style={{ fontSize: 15, fontWeight: 300 }}>
-          {userdata.city ?  <TbMapPin className="me-1" /> : ""}{userdata.city ? userdata.city : ""}
+          {userdata.city ? <TbMapPin className="me-1" /> : ""}
+          {userdata.city ? userdata.city : ""}
         </h5>
       </div>
       <hr />

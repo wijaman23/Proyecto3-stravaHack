@@ -44,7 +44,7 @@ function Amigos() {
                 <img
                   src={friend.img}
                   alt="user"
-                  style={{ width: 50 }}
+                  style={{ width: 50, height: 50 }}
                   className="rounded-circle me-2"
                 />
               </div>

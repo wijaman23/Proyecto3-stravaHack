@@ -43,7 +43,6 @@ function TrainingDetail() {
       .deleteComment(id, comment)
       .then((comment) => {
         setReload(!reload);
-        console.log("entra");
       })
       .catch((error) => console.error(error));
   };
@@ -106,7 +105,7 @@ function TrainingDetail() {
     return (
       <center>
         <div className="mt-5 p-5 bg-white">
-          <h1 className="mt-5 p-5">Loading</h1>
+          <h1 className="mt-5 p-5">Loading...</h1>
         </div>
       </center>
     );

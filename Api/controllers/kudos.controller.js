@@ -14,7 +14,7 @@ module.exports.kudos = (req, res, next) => {
         return Kudos.create(detail);
       }
     })
-    .then(() => Kudos.count(detail))
+    .then(() => Kudos.find(detail))
     .then((kudos) => res.json({ kudos }))
     .catch(next);
 };

@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
-import { BiLike, BiComment, BiCommentX } from "react-icons/bi";
+import { BiComment, BiCommentX } from "react-icons/bi";
+import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function singular(kudo) {
-  if (kudo === 0) {
+  if (kudo.length === 0) {
     return "¡Sé el primero en otorgar kudos!";
   } else if (kudo === 1) {
-    return `${kudo} Kudo`;
+    return `${kudo.length} Kudo`;
   } else {
-    return `${kudo} Kudos`;
+    return `${kudo.length} Kudos`;
   }
 }
 
@@ -58,6 +60,13 @@ function handleStyleSport(typesports) {
         />
       );
   }
+}
+
+function changeHours(mins) {
+  let hrs = Math.floor(mins / 60);
+  let min = mins % 60;
+  min = min < 10 ? "0" + min : min;
+  return `${hrs}h:${min}min`;
 }
 
 function timeFormat(time) {
@@ -117,13 +126,13 @@ function TrainingItem({
   const { user } = useContext(AuthContext);
 
   if (!owner)
-  return (
-    <center>
-      <div className="mt-5 p-5 bg-white">
-        <h1 className="mt-5 p-5">Loading</h1>
-      </div>
-    </center>
-  );
+    return (
+      <center>
+        <div className="mt-5 p-5 bg-white">
+          <h1 className="mt-5 p-5">Loading</h1>
+        </div>
+      </center>
+    );
 
   return (
     <div
@@ -136,10 +145,10 @@ function TrainingItem({
           className="text-decoration-none text-reset link-primary"
         >
           <img
-            className=" rounded-5"
+            className="rounded-circle"
             src={owner.img}
             alt={title}
-            style={{ maxWidth: 40, maxHeight: 40 }}
+            style={{ width: 40, height: 40 }}
           />
         </Link>
         <div className="ms-4 d-flex flex-column">
@@ -187,7 +196,9 @@ function TrainingItem({
             >
               Hora
             </h6>
-            <h3 style={{ fontSize: 20, fontWeight: 400 }}>{duration} min</h3>
+            <h3 style={{ fontSize: 20, fontWeight: 400 }}>
+              {changeHours(duration)}
+            </h3>
           </div>
           <div className="ms-4">
             <h6
@@ -220,17 +231,45 @@ function TrainingItem({
               style={{ cursor: "pointer" }}
               className="me-2"
             >
-              {kudo.user === user.id ? (
-                <BiLike style={{ fontSize: "20px", color: "red" }} />
+              {kudo.find((kudo) => kudo["user"] === user.id) ? (
+                <motion.div
+                  className="box"
+                  animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 360, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    times: [0, 0.2, 0.5, 0.8, 1],
+                  }}
+                >
+                  <AiTwotoneLike
+                    style={{ fontSize: "20px", color: "rgb(252, 82, 0)" }}
+                  />
+                </motion.div>
               ) : (
-                <BiLike style={{ fontSize: "20px" }} />
+                <AiOutlineLike style={{ fontSize: "20px" }} />
               )}
             </span>
+
             <Link
               to={`/training/${id}`}
               className="text-decoration-none text-reset link-danger"
             >
-              <span className="mt-2 me-2">{handleComment(comments)}</span>
+              <span className="mt-2 me-2 position-relative">
+                {handleComment(comments)}
+                {comments.length > 0 ? (
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                    style={{ backgroundColor: "rgb(252, 82, 0)" }}
+                  >
+                    {comments.length}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </span>
             </Link>
           </div>
         </div>
