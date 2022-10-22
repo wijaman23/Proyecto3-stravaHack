@@ -21,7 +21,6 @@ function Estadisticas() {
 
   const { user } = useContext(AuthContext);
 
-  //Funcion para filtrar fecha
   function sumarDias(fecha, dias) {
     fecha.setDate(fecha.getDate() + dias);
     return fecha;

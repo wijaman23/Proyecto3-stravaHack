@@ -8,6 +8,8 @@ import { TiDelete } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { TbMapPin } from "react-icons/tb";
+import "./Detail.css"
 
 function Detail() {
   const [training, setTraining] = useState([]);
@@ -178,9 +180,23 @@ function Detail() {
         <div className="d-flex justify-content-evenly col-11">
           <div>
             <div className="d-flex">
-              <h5 className="me-5" style={{ fontSize: 27, fontWeight: 500 }}>
-                {user.name} {user.lastname}
-              </h5>
+              <div>
+                <div>
+                  <div>
+                    <h5
+                      className="me-5"
+                      style={{ fontSize: 27, fontWeight: 500 }}
+                    >
+                      {user.name} {user.lastname}
+                    </h5>
+                  </div>
+                  <h5 style={{ fontSize: 15, fontWeight: 300 }}>
+                    {user.city ? <TbMapPin className="me-1" /> : ""}
+                    {user.city ? user.city : ""}
+                  </h5>
+                </div>
+              </div>
+
               <div className="d-flex align-items-center flex-column bg-white rounded-2 p-4 mb-5 border border-2">
                 <h5 style={{ fontSize: 18, fontWeight: 350 }}>
                   Actividades Totales
@@ -219,7 +235,7 @@ function Detail() {
                               handleDeleteTrainingSubmit(training.id)
                             }
                           >
-                            <TiDelete style={{ fontSize: 25, color: "red" }} />
+                            <TiDelete style={{ fontSize: 25, color: "rgb(252, 82, 0)" }} />
                           </button>
                         ) : (
                           <div className="me-4"></div>
@@ -275,7 +291,7 @@ function Detail() {
                 <button
                   className={
                     toggleState === 1
-                      ? "bg-warning bg-grdient mx-1"
+                      ? "btnActive mx-1"
                       : "bg-white mx-1"
                   }
                   onClick={() => toggleTab(1)}
@@ -283,7 +299,7 @@ function Detail() {
                   <img
                     src="https://i.ibb.co/LgyLwtd/11.png"
                     alt="zapas"
-                    style={{ width: 40 }}
+                    style={{ width: 40, color: "white" }}
                   />
                 </button>
                 <button

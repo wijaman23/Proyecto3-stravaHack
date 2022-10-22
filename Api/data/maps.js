@@ -1,8 +1,23 @@
 const maps = [
   {
     value:
+      "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/AVVOZ44BE77RNUE5UZ3MWXO7BGM5R3W2VOCR4T54FRGPDER7Z3NWUTCQLSTIALBY5YH4OJWUAQJQTDJ6NKX2Y3ZG6QXYCXCA",
+    label: "Alicante",
+  },
+  {
+    value:
       "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/G4IXCI5THV2CW7DHELUMJKCFVCEK3TX3TCBCDUNVAMMVOQW5THE6X7TFORJGRQ2PHZSMTBYIXT4KEPSU3SSIEXM7HJEAAQ5X",
     label: "Barcelona",
+  },
+  {
+    value:
+      "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/NX2BYP653VDDKZSKQHJPVJLAAGOMLW4M256XXXSJQPJG7QGHZLGZPMCERGSBTE7FBYZZ6RKGEL5JNNGEEHXD2ZYVUXMYNHWA",
+    label: "Bilbao",
+  },
+  {
+    value:
+      "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/GZTG24CRIM2KMHDBPZFULN773MXCE55UDDROFJ7XAJIMQSO4ERXHKYT3QLGSSULMODYUJMTSQEL4JCQJD5KYXBJ7BP34KXSO",
+    label: "Caceres",
   },
   {
     value:
@@ -13,6 +28,11 @@ const maps = [
     value:
       "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/ESSFLSIGZYCHJLXAYHWT4K3Z3F26VVM4DDVLQP466B6JYBUTMISPNDTQ6SRFULMOGSF4WK6FMF4MYXILH4OF7MUHKGMXM3LX",
     label: "Madrid",
+  },
+  {
+    value:
+      "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/4Y7HVPFUCBIQMJ3P5IOWCFQ7AMIKOLDIGUQT3C53C5QJOT6BZR523UK4JBMQID3TDXHLUDWEOFPUTWZW3AFCSMSXFBENYKPL",
+    label: "Murcia",
   },
   {
     value:
@@ -39,8 +59,11 @@ const maps = [
       "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/45VLXQ2T7HW57XOETTUU34IQ2R632623UOXAVUWYET2PNJ47GH6R24XXBSGLBXNKATCQC2WR5JOQ5HDPDYZMFCXCWAOLRSP4",
     label: "Valencia",
   },
+  {
+    value:
+      "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/PCZRZJMPNHLZYV6UJUZY66NH32LJDKKPN4OJGKMTWDCM3DNJ4SCJCOUHO4ASN3WWEUYVBO7NXGLARR3BMDF25SXH6FP3HHPO",
+    label: "Vigo",
+  },
 ];
 
 module.exports = maps;
-
-
