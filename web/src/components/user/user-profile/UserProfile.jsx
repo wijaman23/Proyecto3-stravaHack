@@ -72,7 +72,7 @@ function UserProfile() {
         <img
           src={userdata.img}
           alt="imagen"
-          style={{ width: 100 }}
+          style={{ width: 150, height: 150}}
           className="rounded-circle"
         />
       </div>

@@ -5,6 +5,7 @@ import NavBarPage from "../../components/navbar-page/NavBarPage";
 import TrainingList from "../../components/training/training-list/TrainingList";
 import UserProfile from "../../components/user/user-profile/UserProfile";
 import { motion } from "framer-motion";
+import Grafica from "../../components/grafica/Grafica";
 
 function Home() {
   return (
@@ -64,6 +65,7 @@ function Home() {
             }}
           >
             <Amigos />
+            <Grafica />
           </motion.div>
         </div>
       </div>

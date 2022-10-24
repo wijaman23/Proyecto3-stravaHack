@@ -28,7 +28,7 @@ module.exports.login = (req, res, next) => {
     next(
       createError(400, {
         message: "User validation failed",
-        errors: { email: { message: "Invalid email or password" } },
+        errors: { email: { message: "Usuario o contraseña invalidas" } },
       })
     );
   }

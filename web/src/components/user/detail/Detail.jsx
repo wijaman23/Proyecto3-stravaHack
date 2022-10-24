@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { TbMapPin } from "react-icons/tb";
-import "./Detail.css"
+import "./Detail.css";
 
 function Detail() {
   const [training, setTraining] = useState([]);
@@ -57,7 +57,7 @@ function Detail() {
     for (let i = 0; i < training.length; i++) {
       sum = sum + (training[i].typesports === style ? training[i].distance : 0);
     }
-    return sum;
+    return sum.toFixed(2);
   }
 
   function sumDistanceSemana(training, style, time) {
@@ -235,7 +235,9 @@ function Detail() {
                               handleDeleteTrainingSubmit(training.id)
                             }
                           >
-                            <TiDelete style={{ fontSize: 25, color: "rgb(252, 82, 0)" }} />
+                            <TiDelete
+                              style={{ fontSize: 25, color: "rgb(252, 82, 0)" }}
+                            />
                           </button>
                         ) : (
                           <div className="me-4"></div>
@@ -290,9 +292,7 @@ function Detail() {
               <div className="d-flex justify-content-center">
                 <button
                   className={
-                    toggleState === 1
-                      ? "btnActive mx-1"
-                      : "bg-white mx-1"
+                    toggleState === 1 ? "btnActive mx-1" : "bg-white mx-1"
                   }
                   onClick={() => toggleTab(1)}
                 >
@@ -304,9 +304,7 @@ function Detail() {
                 </button>
                 <button
                   className={
-                    toggleState === 2
-                      ? "bg-warning bg-grdient"
-                      : "bg-white rounded"
+                    toggleState === 2 ? "btnActive mx-1" : "bg-white mx-1"
                   }
                   onClick={() => toggleTab(2)}
                 >
@@ -318,9 +316,7 @@ function Detail() {
                 </button>
                 <button
                   className={
-                    toggleState === 3
-                      ? "bg-warning bg-grdient rounded mx-1"
-                      : "bg-white rounded mx-1"
+                    toggleState === 3 ? "btnActive mx-1" : "bg-white mx-1"
                   }
                   onClick={() => toggleTab(3)}
                 >

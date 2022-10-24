@@ -136,6 +136,9 @@ function TrainingDetail() {
               <h5 style={{ fontSize: 30, fontWeight: 500 }}>
                 {training.title}
               </h5>
+              <h5 style={{ fontSize: 15, fontWeight: 300 }}>
+                {training.description}
+              </h5>
             </div>
           </div>
           <div>
@@ -167,7 +170,7 @@ function TrainingDetail() {
             <div className="d-flex p-3 d-flex ms-3 ">
               <div className="me-4">
                 <h5 style={{ fontSize: 30, fontWeight: 300 }}>
-                  {((training.distance * training.duration) / 6).toFixed(2)}w
+                  {((training.distance * training.duration) / 6).toFixed(1)}w
                 </h5>
                 <h5 style={{ fontSize: 15, fontWeight: 300 }}>Potencia</h5>
               </div>
@@ -175,9 +178,9 @@ function TrainingDetail() {
                 <h5 style={{ fontSize: 30, fontWeight: 300 }}>
                   {(
                     training.duration *
-                    70 *
+                    7 *
                     (training.distance / training.duration)
-                  ).toFixed(2)}
+                  ).toFixed(1)}
                   kj
                 </h5>
                 <h5 style={{ fontSize: 15, fontWeight: 300 }}>

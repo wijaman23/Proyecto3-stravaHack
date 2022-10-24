@@ -26,8 +26,8 @@ function NavBarPage({ icon }) {
 
   return (
     <div >
-      <Navbar expand="lg" fixed="top" className="bg-white">
-        <Container fluid>
+      <Navbar expand="lg" fixed="top" className="bg-white mx-5">
+        <Container fluid className="mx-5">
           <NavLink to="/home">
             <Navbar.Brand style={{ marginLeft: 100, padding: 10 }}>
               <img

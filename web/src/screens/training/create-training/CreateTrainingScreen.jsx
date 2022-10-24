@@ -90,6 +90,8 @@ function CreateTrainingScreen() {
                 <div className="input-group mb-1" style={{ width: 200 }}>
                   <input
                     type="number"
+                    step='0.01'
+                    
                     className={`form-control ${
                       errors.distance ? "is-invalid" : ""
                     }`}

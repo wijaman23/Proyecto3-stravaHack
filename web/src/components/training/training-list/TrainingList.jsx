@@ -26,6 +26,7 @@ function TrainingList() {
     <>
       {training
         .slice(0)
+        .sort(training.createdAt)
         .reverse()
         .map((training) => (
           <div className="col mb-5" key={training.id}>

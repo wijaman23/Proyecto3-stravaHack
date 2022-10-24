@@ -39,7 +39,7 @@ function Estadisticas() {
           sum + (training[i].typesports === style ? training[i].distance : 0);
       }
     }
-    return sum;
+    return sum.toFixed(2);
   }
 
   function hours(training, style, time) {

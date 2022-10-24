@@ -40,8 +40,7 @@ function Carrusel() {
             Selecciona grupos musculares y crea tu propio entrenamiento
             personalizado. Participa en retos y compite amistosamente para
             motivarte más. Entrena en cualquier sitio y en cualquier lugar.
-            Obtén los resultados que buscas gracias a planes de entrenamiento
-            que se adaptan a tu nivel, diseñados por especialistas del fitness.
+            Obtén los resultados que buscas.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -61,8 +60,7 @@ function Carrusel() {
             Registra tus entrenamientos y analiza las estadísticas. Únete a
             retos para más motivación y desafía tus límites. Comparte tus éxitos
             con una comunidad global y alcanza tus metas paso a paso. ¿Te
-            animas? Descarga las apps adidas Running y adidas Training y ponte
-            en forma con éxito.
+            animas?
           </p>
         </Carousel.Caption>
       </Carousel.Item>
